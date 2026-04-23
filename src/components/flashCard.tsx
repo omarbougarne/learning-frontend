@@ -17,14 +17,6 @@ function Flashcard({ word, total, currentIndex, showTranslation, show, hide, nex
   )
 }
 const styles = {
-  page: {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f5f5f3',
-    fontFamily: 'sans-serif',
-  },
   card: {
     background: '#fff',
     border: '1px solid #e5e5e3',

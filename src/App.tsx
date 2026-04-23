@@ -1,40 +1,26 @@
-import { useState } from 'react'
-import words from "./data"
-
+import FlashCard from "./components/flashCard"
+import { useFlashcard } from "./hooks/useFlashCard"
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [showTranslation, setShowTranslation] = useState(false)
 
-  const nextSlide = () => {
-    setCurrentIndex(prev => (prev + 1) % words.length)
-    setShowTranslation(false)
-  }
-
+const flashcard = useFlashcard()
   return (
-    <div style={styles.page}>
-      <div style={styles.card}>
-        <p style={styles.label}>Do you know what this word means?</p>
-
-        <p style={styles.word}>{words[currentIndex].en}</p>
-
-        <p style={{ ...styles.translation, visibility: showTranslation ? 'visible' : 'hidden' }}>
-          {words[currentIndex].es}
-        </p>
-
-        <hr style={styles.divider} />
-
-        <div style={styles.actions}>
-          <button style={styles.btn} onClick={() => setShowTranslation(true)}>Show</button>
-          <button style={styles.btn} onClick={() => setShowTranslation(false)}>Hide</button>
-          <button style={{ ...styles.btn, ...styles.btnNext }} onClick={nextSlide}>Next →</button>
-        </div>
-
-        <p style={styles.counter}>{currentIndex + 1} / {words.length}</p>
-      </div>
+    <>
+    <div style={style.page}>
+        <FlashCard {...flashcard}/>
     </div>
+    </>
   )
 }
 
-
+const style = {
+    page: {
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f5f5f3',
+    fontFamily: 'sans-serif',
+  }
+}
 
 export default App
