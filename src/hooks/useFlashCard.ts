@@ -10,6 +10,12 @@ export function useFlashcard() {
         setShowTranslation(false)
     }
 
+    const previous = () => {
+        if(words.length === 0) return;
+        setCurrentIndex(prev => (prev - 1 + words.length) % words.length)
+        setShowTranslation(false)
+    }
+
     return {
         word: words[currentIndex],
         total: words.length,
@@ -17,6 +23,7 @@ export function useFlashcard() {
         showTranslation,
         show: () => setShowTranslation(true),
         hide: () => setShowTranslation(false),
+        previous,
         next,
     }
 }

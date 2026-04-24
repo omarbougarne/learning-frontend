@@ -1,4 +1,4 @@
-function Flashcard({ word, total, currentIndex, showTranslation, show, hide, next }) {
+function Flashcard({ word, total, currentIndex, showTranslation, show, hide, previous, next }) {
   return (
     <div style={styles.card}>
       <p style={styles.label}>Do you know what this word means?</p>
@@ -8,9 +8,10 @@ function Flashcard({ word, total, currentIndex, showTranslation, show, hide, nex
       </p>
       <hr style={styles.divider} />
       <div style={styles.actions}>
+        <button style={{ ...styles.btn, ...styles.btnNextPrevious }} onClick={previous}>Previous</button>
         <button style={styles.btn} onClick={show}>Show</button>
         <button style={styles.btn} onClick={hide}>Hide</button>
-        <button style={{ ...styles.btn, ...styles.btnNext }} onClick={next}>Next →</button>
+        <button style={{ ...styles.btn, ...styles.btnNextPrevious }} onClick={next}>Next</button>
       </div>
       <p style={styles.counter}>{currentIndex + 1} / {total}</p>
     </div>
@@ -60,7 +61,7 @@ const styles = {
     background: 'transparent',
     cursor: 'pointer',
   },
-  btnNext: {
+  btnNextPrevious: {
     background: '#f0f0ee',
     fontWeight: 500,
   },
