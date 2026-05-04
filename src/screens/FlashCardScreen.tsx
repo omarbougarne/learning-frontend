@@ -5,7 +5,7 @@ export default function FlashCardScreen({config}) {
     const flashcard = useFlashcard(config)
 return (
     <div>
-        <Flashcard {...flashcard} />
+        <Flashcard {...flashcard} config={config} />
     </div>
 )
 }

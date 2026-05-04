@@ -1,11 +1,11 @@
 import { styles } from "../styles/style"
-export default function Flashcard({ word, total, currentIndex, showTranslation, show, hide, previous, next }) {
+export default function Flashcard({ word, total, currentIndex, showTranslation, show, hide, previous, next, config }) {
   return (
     <div style={styles.card}>
       <p style={styles.label}>Do you know what this word means?</p>
-      <p style={styles.word}>{word.en}</p>
+      <p style={styles.word}>{word[config.language]}</p>
       <p style={{ ...styles.translation, visibility: showTranslation ? 'visible' : 'hidden' }}>
-        {word.es}
+        {word[config.language]}
       </p>
       <hr style={styles.divider} />
       <div style={styles.actions}>

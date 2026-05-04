@@ -1,23 +1,24 @@
 import { useState } from "react"
-import FlashCard from "./components/flashCard"
-import { useFlashcard } from "./hooks/useFlashCard"
+import SetupScreen from "./screens/SetupScreen";
+import FlashCardScreen from "./screens/FlashCardScreen";
 function App() {
     const [screen, setScreen] = useState('setup');
     const [config, setConfig] = useState({ language: null, difficulty: null })
 
-    const flashcard = useFlashcard(config);
+
 
     const handleStart = (language, difficulty) => {
     setConfig({ language, difficulty })
     setScreen('flashcard')
     }
   return (
-    <>
-    <div style={style.page}>
-        <FlashCard {...flashcard}/>
-    </div>
-    </>
-  )
+  <div style={style.page}>
+    {screen === 'setup'
+      ? <SetupScreen onStart={handleStart} />
+      : <FlashCardScreen config={config} />
+    }
+  </div>
+)
 }
 
 const style = {

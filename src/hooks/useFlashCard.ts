@@ -5,20 +5,22 @@ export function useFlashcard(config) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [showTranslation, setShowTranslation] = useState(false)
 
-    const filtered = words.filter(word => word.difficulty !== config.difficulty)
+    const filtered = words.filter(word => word.difficulty === config.difficulty);
+    console.log(config.difficulty, filtered)
+    const selected = filtered[currentIndex][config.language];
     const next = () => {
-        setCurrentIndex(prev => (prev + 1) % words.length)
+        setCurrentIndex(prev => (prev + 1) % filtered.length)
         setShowTranslation(false)
     }
 
     const previous = () => {
-        if(words.length === 0) return;
-        setCurrentIndex(prev => (prev - 1 + words.length) % words.length)
+        if(filtered.length === 0) return;
+        setCurrentIndex(prev => (prev - 1 + filtered.length) % filtered.length)
         setShowTranslation(false)
     }
 
     return {
-        word: words[currentIndex],
+        word: filtered[currentIndex],
         total: words.length,
         currentIndex,
         showTranslation,
